@@ -1,0 +1,34 @@
+{% extends 'base.html' %}  <!-- Extend your base template if you have one -->
+
+{% block body %}
+  <h1>Doctor Profile</h1>
+
+  <!-- Display Doctor Information -->
+  <div class="doctor-info">
+    <h2>{{ doctor.first_name }} {{ doctor.last_name }}</h2>
+    <p>Email: {{ doctor.email }}</p>
+    <p>Phone Number: {{ doctor.phone_number }}</p>
+    <p>Specialization: {{ doctor.specialization }}</p>
+    <!-- Add more doctor information fields as needed -->
+  </div>
+
+  <hr>
+
+  <!-- Display Doctor's Patients -->
+  <h2>Patients</h2>
+  <div class="patient-cards">
+    {% for patient in doctor.patients.all %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ patient.name }}</h5>
+          <p class="card-text">Age: {{ patient.age }}</p>
+          <p class="card-text">Address: {{ patient.address }}</p>
+          <p class="card-text">Category: {{ patient.category }}</p>
+          <!-- Add more patient data fields as needed -->
+        </div>
+      </div>
+    {% empty %}
+      <p>No patients found for this doctor.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

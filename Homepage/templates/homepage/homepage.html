@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<!-- Display search results in cards -->
+<section class="section-content padding-y">
+  <div class="container">
+    <div class="row">
+      {% for patient in patients %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ patient.name }}</h5>
+              <p class="card-text">Age: {{ patient.age }}</p>
+              <p class="card-text">Address: {{ patient.address }}</p>
+              <p class="card-text">Category: {{ patient.category }}</p>
+              <!-- Add more patient data fields as needed -->
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No patients found.</p>
+      {% endfor %}
+    </div> <!-- row end.// -->
+  </div> <!-- container .//  -->
+</section>
+{% endblock %}

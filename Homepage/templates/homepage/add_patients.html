@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {# Assuming you have a base template #}
+
+{% block body %}
+
+<div class="container">
+  <h2>Create a New Patient</h2>
+  <form method="post" class="form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" name="age" id="age" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <textarea name="address" id="address" class="form-control" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="category" id="category" class="form-control" required>
+        <option value="Heart Patients">Heart Patients</option>
+        <option value="Liver Patients">Liver Patients</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="doctor">Doctor:</label>
+      <select name="doctor" id="doctor" class="form-control">
+        <option value="" selected>Choose a doctor (optional)</option>
+        {% for doctor in doctors %}
+          <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+<br>
+
+{% endblock %}
